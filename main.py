@@ -8,6 +8,9 @@ class Card:
     def display(self):
         print(f'{self.suit} of {self.value}')
 
+
+
+
 class Deck:
     def __init__(self):
         self.cards = []
@@ -52,13 +55,13 @@ class Player:
     def calculateHandValue(self):
         # Calculate the total value of the player's hand
         total_value = 0
-        for card in self.hand:
-            if card.value.isdigit():
-                total_value += int(card.value)
+        for card in self.hand: # Iterate through each card in the hand
+            if card.value.isdigit(): # check if cards value is a digit 2-10
+                total_value += int(card.value) # if it is add the number value to the total
             elif card.value in ["Jack", "Queen", "King"]:
-                total_value += 10
+                total_value += 10 # if its one of those cards add a value of 10 to it
             elif card.value == "Ace":
-                total_value += 11
+                total_value += 11 # if its ace add a value of 11 to it
         return total_value
 
 class Dealer:  
@@ -80,59 +83,59 @@ class Dealer:
     def calculateHandValue(self):
         # Calculate the total value of the player's hand
         total_value = 0
-        for card in self.hand:
-            if card.value.isdigit():
-                total_value += int(card.value)
+        for card in self.hand: # Iterate through each card in the hand
+            if card.value.isdigit(): # check if cards value is a digit 2-10
+                total_value += int(card.value) # if it is add the number value to the total
             elif card.value in ["Jack", "Queen", "King"]:
-                total_value += 10
+                total_value += 10 # if its one of those cards add a value of 10 to it
             elif card.value == "Ace":
-                total_value += 11
+                total_value += 11 # if its ace add a value of 11 to it
         return total_value
         
     
 
        
+class start:
+    def start_game():
+        # start the game
+        start_input = input("To start the game, type 'start': ")
+        if start_input.lower() == "start":
+            # Initialize player and dealer
+            player = Player("Player 1")
+            dealer = Dealer()
 
-def start_game():
-    # start the game
-    start_input = input("To start the game, type 'start': ")
-    if start_input.lower() == "start":
-        # Initialize player and dealer
-        player = Player("Player 1")
-        dealer = Dealer()
+            
+            deck = Deck()
+            deck.shuffle()
 
+            # Deal cards to player and dealer
+            player.draw(deck)
+            dealer.draw(deck)
         
-        deck = Deck()
-        deck.shuffle()
+        
+            # Show hands of player and dealer
+            player.showHand()
+            dealer.showHand()
 
-        # Deal cards to player and dealer
-        player.draw(deck)
-        dealer.draw(deck)
-       
-    
-         # Show hands of player and dealer
-        player.showHand()
-        dealer.showHand()
+            # Calculate hand values
+            player_hand_value = player.calculateHandValue()
+            dealer_hand_value = dealer.calculateHandValue()
 
-        # Calculate hand values
-        player_hand_value = player.calculateHandValue()
-        dealer_hand_value = dealer.calculateHandValue()
-
-        # Compare hand values to determine the winner
-        if player_hand_value > dealer_hand_value:
-            print("Player wins!")
-            start_game()
-        elif player_hand_value < dealer_hand_value:
-            print("Dealer wins!")
-            start_game()
+            # Compare hand values to determine the winner
+            if player_hand_value > dealer_hand_value:
+                print("Player wins!")
+                
+            elif player_hand_value < dealer_hand_value:
+                print("Dealer wins!")
+               
+            else:
+                print("It's a tie!")
+                
         else:
-            print("It's a tie!")
-            start_game()
-    else:
-        print("Invalid input. Please type 'start' to begin the game.")
+            print("Invalid input. Please type 'start' to begin the game.")
 
 # Call the function to start the game
-start_game()
+    start_game()
 
 
 
