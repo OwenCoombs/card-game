@@ -2,11 +2,11 @@ import random
 
 class Card:
     def __init__(self, value, suit):
-        self.value = value
+        self.value = value # It takes two parameters: value and suit.
         self.suit = suit
 
     def display(self):
-        print(f'{self.suit} of {self.value}')
+        print(f'{self.suit} of {self.value}') #displays value and suit
 
 
 
@@ -19,8 +19,8 @@ class Deck:
     def build(self):
         # Create a standard deck of 52 cards
         for s in ["Spades", "Clubs", "Diamonds", "Hearts"]:
-            for v in range(1, 14):
-                self.cards.append(Card(str(v), s))
+            for v in range(1, 14): # Create a new card instance with the current value and suit,
+                self.cards.append(Card(str(v), s)) # and append it to the 'cards' list in the deck object
 
     def show(self):
         # Display all the cards in the deck
@@ -96,7 +96,7 @@ class Dealer:
 
        
 class start:
-    def start_game():
+    def start_game(self):
         # start the game
         start_input = input("To start the game, type 'start': ")
         if start_input.lower() == "start":
@@ -124,18 +124,22 @@ class start:
             # Compare hand values to determine the winner
             if player_hand_value > dealer_hand_value:
                 print("Player wins!")
-                
+                self.start_game()
             elif player_hand_value < dealer_hand_value:
                 print("Dealer wins!")
-               
+                self.start_game()
             else:
                 print("It's a tie!")
+                self.start_game()
+
                 
         else:
             print("Invalid input. Please type 'start' to begin the game.")
 
 # Call the function to start the game
-    start_game()
+
+start = start()
+start.start_game()
 
 
 
